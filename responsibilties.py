@@ -1,8 +1,6 @@
 # DISCLAIMER!!!
 
 
-guests_list = []
-
 class ResearchGuest:
 	def __init__(self, guest_name=None):
 	    self.guest_name = guest_name
@@ -49,5 +47,32 @@ class ResearchGuest:
 					self.get_short_report(name)
 			    self.get_public_info_report(name)
 		            
-		                
-		                
+
+				
+class SocialMediaEmail:
+	def __init__(self):
+		self.sorted_mails_and_comments = None
+		self.mails_and_socialMedias = ['www.reddit.com/r/lexfridman', 'www.twitter.com/lexfridman', 'www.youtube.com/user/lexfridman', 'www.linkedin.com/in/lexfridman', 'lexfridmanpodcast@mail.com']
+
+	
+	def sort_mail_and_comments(self):
+		constructive_feedback = None
+		motivated_by_podcast = None
+		want_suggestion = None
+		for media in self.mails_and_socialMedias:
+		    with open(media) as comments:
+		        if comments:
+		            for comment in comments:
+				if comment.is_constructive_feedback():
+					constructive_feedback = comment
+				elif comment.is_motivated_by_podcast():
+					motivated_by_podcast = comment
+				elif comment.is_want_suggestion():
+					want_suggestion = comment
+				elif comment.is_needless_asshole_opinion():
+					pass
+		self.sorted_mails_and_comments = {'constructive_feedbacks': constructive_feedback, 'motivated_by_podcast': motivated_by_podcast, 'want_suggestion': want_suggestion}
+		
+	def get_sorted_mails_and_comments(self):
+		return self.sorted_mails_and_comments
+	
